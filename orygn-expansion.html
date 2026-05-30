@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORYGN Expansión — Construye tu Negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --naranja: #E8602A;
+    --naranja-dark: #C44E1E;
+    --naranja-glow: rgba(232,96,42,0.18);
+    --negro: #080808;
+    --negro2: #101010;
+    --negro3: #181818;
+    --gris: #2a2a2a;
+    --gris-texto: #aaa;
+    --blanco: #f5f5f0;
+    --oro: #C9A84C;
+    --max: 480px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: rgba(8,8,8,0.97);
+    border-bottom: 1px solid rgba(232,96,42,0.2);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  .topbar-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--naranja);
+    line-height: 1;
+  }
+
+  .topbar-btn {
+    background: var(--naranja);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    padding: 8px 18px;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .topbar-btn:hover { background: var(--naranja-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 20px 30px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,96,42,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      linear-gradient(180deg, #0d0d0d 0%, #080808 100%);
+    z-index: 0;
+  }
+
+  .hero-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, rgba(232,96,42,0.3) 30%, rgba(232,96,42,0.1) 70%, transparent);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--naranja);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 14vw, 78px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--blanco);
+    margin-bottom: 8px;
+  }
+
+  .hero-title .accent {
+    color: var(--naranja);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    color: rgba(245,245,240,0.55);
+    margin: 16px 0 32px;
+    line-height: 1.4;
+  }
+
+  .hero-statement {
+    border-left: 2px solid var(--naranja);
+    padding-left: 16px;
+    margin: 28px 0;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,245,240,0.8);
+    line-height: 1.7;
+  }
+
+  .hero-statement strong {
+    color: var(--blanco);
+    font-weight: 600;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(232,96,42,0.15);
+    border: 1px solid rgba(232,96,42,0.15);
+    margin: 32px 0;
+  }
+
+  .hero-stat {
+    background: rgba(8,8,8,0.9);
+    padding: 20px 16px;
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--naranja);
+    line-height: 1;
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .btn-primary {
+    display: block;
+    background: var(--naranja);
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding: 17px 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  .btn-primary:hover { background: var(--naranja-dark); transform: translateY(-1px); }
+  .btn-primary:hover::before { transform: translateX(100%); }
+
+  .btn-secondary {
+    display: block;
+    background: transparent;
+    color: var(--blanco);
+    text-decoration: none;
+    text-align: center;
+    padding: 16px 24px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    border: 1px solid rgba(245,245,240,0.2);
+    transition: all 0.25s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--naranja);
+    color: var(--naranja);
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 70px 20px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 9vw, 52px);
+    line-height: 0.95;
+    color: var(--blanco);
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .section-body {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,245,240,0.7);
+    line-height: 1.75;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: var(--naranja);
+    margin: 0 auto 50px;
+  }
+
+  /* ── MERCADO ── */
+  .mercado {
+    background: var(--negro2);
+    padding-top: 30px;
+  }
+
+  .mercado-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .mercado-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 18vw, 96px);
+    color: var(--naranja);
+    line-height: 1;
+    margin: 24px 0 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .mercado-big-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 32px;
+  }
+
+  .mercado-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(232,96,42,0.12);
+    margin: 32px 0;
+  }
+
+  .mercado-card {
+    background: var(--negro2);
+    padding: 24px 16px;
+    text-align: left;
+  }
+
+  .mercado-card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--oro);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .mercado-card-text {
+    font-size: 12px;
+    color: var(--gris-texto);
+    line-height: 1.5;
+  }
+
+  .mercado-highlight {
+    background: rgba(232,96,42,0.07);
+    border: 1px solid rgba(232,96,42,0.2);
+    padding: 24px;
+    margin-top: 28px;
+    text-align: left;
+  }
+
+  .mercado-highlight p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(245,245,240,0.8);
+  }
+
+  .mercado-highlight p strong {
+    color: var(--naranja);
+  }
+
+  /* ── POR QUÉ ESTE NEGOCIO ── */
+  .porque {
+    background: var(--negro);
+  }
+
+  .porque-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .porque-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    font-weight: 300;
+    color: rgba(245,245,240,0.6);
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  .porque-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .porque-item {
+    background: var(--negro3);
+    border-left: 3px solid transparent;
+    padding: 22px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .porque-item:hover {
+    border-left-color: var(--naranja);
+    background: rgba(232,96,42,0.05);
+  }
+
+  .porque-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--naranja);
+    opacity: 0.5;
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .porque-text h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blanco);
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  .porque-text p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gris-texto);
+    line-height: 1.6;
+  }
+
+  /* ── CÓMO SE GANA ── */
+  .gana {
+    background: var(--negro2);
+  }
+
+  .gana-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .gana-bono {
+    background: var(--negro);
+    border: 1px solid rgba(232,96,42,0.25);
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gana-bono::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, rgba(232,96,42,0.15), transparent 70%);
+  }
+
+  .gana-bono-tag {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 8px;
+  }
+
+  .gana-bono-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--blanco);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .gana-bono-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--naranja);
+    line-height: 1;
+    margin: 8px 0;
+  }
+
+  .gana-bono-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gris-texto);
+    line-height: 1.6;
+  }
+
+  /* simulador */
+  .simulador {
+    background: var(--negro);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 28px 24px;
+    margin-top: 8px;
+  }
+
+  .simulador-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--oro);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+
+  .sim-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .sim-row:last-of-type { border-bottom: none; }
+
+  .sim-label {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gris-texto);
+  }
+
+  .sim-label span {
+    display: block;
+    font-size: 11px;
+    color: rgba(245,245,240,0.3);
+    margin-top: 2px;
+  }
+
+  .sim-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--blanco);
+    letter-spacing: 0.05em;
+  }
+
+  .sim-amount.highlight { color: var(--naranja); }
+  .sim-amount.gold { color: var(--oro); }
+
+  .sim-note {
+    margin-top: 16px;
+    font-size: 11px;
+    color: rgba(245,245,240,0.35);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── VIDEO ── */
+  .video-section {
+    background: var(--negro);
+    text-align: center;
+  }
+
+  .video-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: var(--negro3);
+    border: 1px solid rgba(232,96,42,0.15);
+    margin: 28px 0;
+    overflow: hidden;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .video-placeholder-icon {
+    width: 52px;
+    height: 52px;
+    border: 2px solid rgba(232,96,42,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-placeholder-icon svg {
+    fill: var(--naranja);
+    width: 20px;
+    height: 20px;
+    margin-left: 3px;
+  }
+
+  .video-placeholder p {
+    font-size: 12px;
+    color: var(--gris-texto);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── POOL 1% ── */
+  .pool {
+    background: linear-gradient(135deg, #0e0800 0%, #120a02 50%, #0a0a0a 100%);
+    border-top: 1px solid rgba(232,96,42,0.2);
+    border-bottom: 1px solid rgba(232,96,42,0.2);
+  }
+
+  .pool-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pool-badge {
+    display: inline-block;
+    background: var(--naranja);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    padding: 5px 16px;
+    margin-bottom: 24px;
+  }
+
+  .pool-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 28px 0;
+    text-align: left;
+  }
+
+  .pool-step {
+    background: rgba(232,96,42,0.05);
+    border: 1px solid rgba(232,96,42,0.1);
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .pool-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--naranja);
+    line-height: 1;
+    min-width: 28px;
+  }
+
+  .pool-step-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(245,245,240,0.8);
+  }
+
+  .pool-step-text strong {
+    color: var(--blanco);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 14px;
+  }
+
+  .pool-warning {
+    background: rgba(232,96,42,0.08);
+    border-left: 3px solid var(--naranja);
+    padding: 16px 18px;
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .pool-warning p {
+    font-size: 13px;
+    color: rgba(245,245,240,0.75);
+    line-height: 1.6;
+  }
+
+  .pool-warning strong { color: var(--naranja); }
+
+  /* ── TIMELINE ── */
+  .timeline-section {
+    background: var(--negro2);
+  }
+
+  .timeline-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .timeline {
+    position: relative;
+    margin-top: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--naranja), rgba(232,96,42,0.1));
+  }
+
+  .tl-item {
+    padding: 0 0 36px 56px;
+    position: relative;
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: 12px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--naranja);
+    background: var(--negro2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tl-dot-inner {
+    width: 6px;
+    height: 6px;
+    background: var(--naranja);
+    border-radius: 50%;
+  }
+
+  .tl-day {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 6px;
+  }
+
+  .tl-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--blanco);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .tl-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gris-texto);
+    line-height: 1.65;
+  }
+
+  .tl-earn {
+    display: inline-block;
+    background: rgba(232,96,42,0.1);
+    border: 1px solid rgba(232,96,42,0.3);
+    color: var(--naranja);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    padding: 5px 14px;
+    margin-top: 10px;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--negro);
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .cta-final-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .cta-final .section-title {
+    font-size: clamp(44px, 11vw, 64px);
+  }
+
+  .cta-divider {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(180deg, var(--naranja), transparent);
+    margin: 28px auto;
+  }
+
+  .cta-text {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,245,240,0.6);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .cta-text strong {
+    color: var(--blanco);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--negro);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 32px 20px;
+    text-align: center;
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.2em;
+    color: var(--naranja);
+    margin-bottom: 8px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: rgba(245,245,240,0.25);
+    line-height: 1.7;
+  }
+
+  /* ── ANIMS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-title { animation-delay: 0.2s; }
+  .hero-subtitle { animation-delay: 0.3s; }
+  .hero-statement { animation-delay: 0.4s; }
+  .hero-stats { animation-delay: 0.5s; }
+  .btn-group { animation-delay: 0.6s; }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-logo">ORYGN EXPANSIÓN</div>
+  <a href="https://huracan.orygn.co" class="topbar-btn" id="btn-topbar">UNIRME AHORA</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <h1 class="hero-title" style="text-align:center;">
+      Llegar
+      <span class="accent">primero</span>
+      lo cambia todo.
+    </h1>
+
+    <p class="hero-subtitle" style="text-align:center;">
+      El negocio que no requiere inventario, no te llena de producto<br>
+      y paga desde el primer día.
+    </p>
+    <div style="width:100%;margin:24px 0 0;">
+      <img src="Consumidores_inteligentes.jpeg" alt="No somos vendedores. Somos consumidores inteligentes." style="width:100%;display:block;border:1px solid rgba(232,96,42,0.15);">
+    </div>
+    <div class="btn-group">
+      <a href="#registro" class="btn-primary" id="btn-registro-hero">QUIERO INICIAR MI NEGOCIO</a>
+      <a href="#whatsapp" class="btn-secondary" id="btn-wa-hero">HABLAR CON UN ASESOR</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EL MERCADO
+════════════════════════════════════════════ -->
+<section class="mercado">
+  <div class="wrap mercado-inner reveal">
+    <h2 class="section-title" style="font-size:clamp(44px,12vw,64px);line-height:1.05;letter-spacing:0.03em;text-align:center;">
+      El <span style="color:var(--naranja)">mercado</span><br>
+      farmacéutico<br>
+      que más <span style="color:var(--naranja)">creció</span><br>
+      <span style="font-size:0.55em;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:rgba(245,245,240,0.5);letter-spacing:0.05em;">en los últimos 3 años</span>
+    </h2>
+    <div class="divider"></div>
+
+    <p class="section-body" style="font-size:15.5px;line-height:1.85;margin-bottom:28px;margin-top:8px;">
+      Los medicamentos GLP-1 como Ozempic y Wegovy están redefiniendo la industria farmacéutica mundial. La demanda ya existe — millones de personas buscan soluciones para el control de peso y metabolismo. <strong style="color:var(--blanco)">triGLP llegó a democratizar ese acceso</strong> con péptidos bioactivos sublinguales sin necesidad de receta ni inyecciones.
+    </p>
+
+    <div style="width:100%;margin-top:20px;">
+      <img src="Transformacion_Global.jpeg" alt="Esto no es una tendencia. Es una transformación global." style="width:100%;display:block;border:1px solid rgba(232,96,42,0.15);">
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════════════════════════════════════════
+     CÓMO SE GANA
+════════════════════════════════════════════ -->
+<section class="gana">
+  <div class="gana-inner reveal">
+    <div style="width:100%;">
+      <img src="Como_se_gana.jpeg" alt="Un modelo simple que se multiplica" style="width:100%;display:block;border:1px solid rgba(232,96,42,0.15);">
+    </div>
+    <div style="margin-top:20px;">
+      <a href="https://drive.google.com/file/d/1Q7pY4ZAw6NoLNvo54LQrOSjdOmnREx0O/view?usp=drive_link" id="btn-pdf" class="btn-primary" style="display:block;text-align:center;">
+        DESCARGAR PLAN DE COMPENSACIÓN PDF
+      </a>
+    </div>
+
+    <div style="margin-top:36px;">
+      <p style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:var(--blanco);text-align:center;margin-bottom:16px;">
+        Entiende el plan en <span style="color:var(--naranja)">video</span>
+      </p>
+      <div style="position:relative;width:100%;padding-top:56.25%;background:var(--negro3);border:1px solid rgba(232,96,42,0.15);overflow:hidden;">
+        <iframe
+          src="https://www.youtube.com/embed/YgBHneJcCTI"
+          title="Plan de pagos ORYGN"
+          allowfullscreen
+          style="position:absolute;inset:0;width:100%;height:100%;border:none;">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     VIDEO PLAN
+════════════════════════════════════════════ -->
+<section class="video-section">
+  <div class="video-inner reveal">
+    <div class="section-eyebrow">Entiéndelo completo</div>
+    <h2 class="section-title">El plan explicado<br>en video</h2>
+    <div class="divider"></div>
+    <p class="section-body">
+      Ve el plan de compensación completo antes de tomar tu decisión. Cada bono, cada nivel, cada número.
+    </p>
+
+    <div class="video-wrap" id="video-container">
+      <!-- REEMPLAZA data-id con el ID real de YouTube -->
+      <div class="video-placeholder" id="video-placeholder">
+        <div class="video-placeholder-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+        <p>Video del Plan — próximamente</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     POOL 1%
+════════════════════════════════════════════ -->
+<section class="pool">
+  <div class="pool-inner reveal">
+    <div class="pool-badge">ACCIÓN INMEDIATA</div>
+    <div class="section-eyebrow">Fondo Global</div>
+    <h2 class="section-title">Entra al pool<br>del 1% global</h2>
+    <div class="divider"></div>
+
+    <p class="section-body">
+      Existe un bono exclusivo para quienes actúan rápido. El 1% del volumen global de la empresa se distribuye entre quienes cumplen una condición simple.
+    </p>
+
+    <div class="pool-steps">
+      <div class="pool-step">
+        <span class="pool-step-num">1</span>
+        <div class="pool-step-text">
+          <strong>Regístrate hoy</strong>
+          Activa tu cuenta y tu acceso al negocio.
+        </div>
+      </div>
+      <div class="pool-step">
+        <span class="pool-step-num">2</span>
+        <div class="pool-step-text">
+          <strong>Invita 2 directos en las primeras 48 horas</strong>
+          Solo dos personas. Tu círculo más cercano que quiera iniciar.
+        </div>
+      </div>
+      <div class="pool-step">
+        <span class="pool-step-num">3</span>
+        <div class="pool-step-text">
+          <strong>Entras al Fondo Global ORYGN</strong>
+          Cada semana que mantengas 2 nuevos ingresos, sigues dentro del pool que reparte el 1% del CV global de la empresa.
+        </div>
+      </div>
+    </div>
+
+    <div class="pool-warning">
+      <p>
+        <strong>La ventana es real.</strong> Las redes que generan riqueza se construyen en los primeros meses. Estamos en el momento de mayor ventaja en Latam. No es urgencia artificial — es timing real.
+      </p>
+    </div>
+
+    <div class="btn-group" style="margin-top:32px">
+      <a href="#registro" class="btn-primary" id="btn-registro-pool">ENTRAR AL POOL — REGISTRARME HOY</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TIMELINE
+════════════════════════════════════════════ -->
+<section class="timeline-section">
+  <div class="timeline-inner reveal">
+    <div class="section-eyebrow">Tu primer mes</div>
+    <h2 class="section-title">Semana a semana<br>qué pasa y qué ganas</h2>
+    <div class="divider"></div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-day">Día 1</div>
+        <div class="tl-title">Te registras y activas</div>
+        <div class="tl-body">
+          Creas tu cuenta, defines tu paquete de inicio y recibes tu link personalizado. Desde este momento puedes patrocinar y ganar.
+        </div>
+        <span class="tl-earn">Bono directo activo desde aquí</span>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-day">Primeras 48 horas</div>
+        <div class="tl-title">Invitas tus 2 primeros</div>
+        <div class="tl-body">
+          Contactas a las 2 personas de tu lista que ya sabes que necesitan esto o quieren el negocio. Los registras con tu link. Entras al Pool del 1% Global.
+        </div>
+        <span class="tl-earn">+$85–$140 en bonos directos</span>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-day">Semana 1-2</div>
+        <div class="tl-title">Construyes momentum</div>
+        <div class="tl-body">
+          Tu equipo crece. Cada persona que entra genera bono directo para ti. Empiezas a ver tu primera semana pagada. La duplicación empieza a funcionar sola.
+        </div>
+        <span class="tl-earn">$200–$400 estimado semana 1</span>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-day">Semana 3-4</div>
+        <div class="tl-title">El cheque mensual aparece</div>
+        <div class="tl-body">
+          Con directos activos consumiendo su producto, el Bono Estilo de Vida se activa. Tu ingreso ya no depende solo de que tú salgas a buscar — el equipo trabaja.
+        </div>
+        <span class="tl-earn">Bono Estilo de Vida desde $100/mes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════ -->
+<section class="cta-final">
+  <div class="cta-final-inner reveal">
+    <div class="section-eyebrow">Es el momento</div>
+    <h2 class="section-title">Tu decisión<br>es hoy.</h2>
+    <div class="cta-divider"></div>
+    <p class="cta-text">
+      Hay momentos en que llegar primero lo cambia todo. Este es uno de esos momentos.<br><br>
+      <strong>Latam está sin saturar. El mercado está creciendo. El producto funciona. El plan paga desde el primer día.</strong><br><br>
+      Lo único que falta eres tú.
+    </p>
+    <div class="btn-group">
+      <a href="#" class="btn-primary" id="btn-registro-final">REGISTRARME AHORA EN ORYGN</a>
+      <a href="#" class="btn-secondary" id="btn-wa-final">ESCRIBIR POR WHATSAPP</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">ORYGN EXPANSIÓN</div>
+    <p class="footer-text">
+      Distribuidor Independiente ORYGN<br>
+      Este sitio es operado por un distribuidor independiente y no representa a ORYGN Corp directamente.<br>
+      Los resultados de ingresos varían según el esfuerzo individual.
+    </p>
+    <a href="https://huracan.orygn.co" id="footer-registro-link" style="display:inline-block;margin-top:18px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.15em;color:var(--naranja);text-decoration:none;border-bottom:1px solid rgba(232,96,42,0.4);padding-bottom:2px;">orygn.co</a>
+  </div>
+</footer>
+
+<script>
+// ── PARÁMETROS URL ──
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get('ref') || 'aletorreslatam';
+  const tel = params.get('tel') || '525579444892';
+
+  const baseRegistro = 'https://huracan.orygn.co';
+  const registroLink = ref !== 'aletorreslatam'
+    ? `${baseRegistro}?ref=${ref}`
+    : baseRegistro;
+
+  const waMsg = encodeURIComponent('Hola, vi la página de ORYGN Expansión y quiero saber más sobre el negocio.');
+  const waLink = `https://wa.me/${tel}?text=${waMsg}`;
+
+  // Registro buttons
+  ['btn-registro-hero','btn-registro-pool','btn-registro-final','btn-topbar','footer-registro-link'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = registroLink;
+  });
+
+  // WhatsApp buttons
+  ['btn-wa-hero','btn-wa-final'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = waLink;
+  });
+
+  // Footer name
+  const footerRef = document.getElementById('footer-ref-name');
+  if (footerRef && ref !== 'aletorreslatam') {
+    footerRef.textContent = `Distribuidor: @${ref}`;
+  }
+
+  // PDF download button
+  const PDF_LINK = 'https://drive.google.com/file/d/1Q7pY4ZAw6NoLNvo54LQrOSjdOmnREx0O/view?usp=drive_link';
+  const btnPdf = document.getElementById('btn-pdf');
+  if (btnPdf && PDF_LINK) btnPdf.href = PDF_LINK;
+  if (YT_ID) {
+    const container = document.getElementById('video-container');
+    if (container) {
+      container.innerHTML = `<iframe src="https://www.youtube.com/embed/${YT_ID}" allowfullscreen></iframe>`;
+    }
+  }
+})();
+
+// ── SCROLL REVEAL ──
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>
